@@ -1,0 +1,19 @@
+{
+  "name": "seed-phrase-hasher",
+  "version": "1.0.0",
+  "description": "Simple CLI written in NodeJS used to encrypt and decrypt seed phrases using hashes and salt",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Petar-CV/seed-phrase-hasher.git"
+  },
+  "author": "Petar Cvetko Voćanec",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Petar-CV/seed-phrase-hasher/issues"
+  },
+  "homepage": "https://github.com/Petar-CV/seed-phrase-hasher#readme"
+}
