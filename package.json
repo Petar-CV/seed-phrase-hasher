@@ -2,10 +2,9 @@
   "name": "seed-phrase-hasher",
   "version": "1.0.0",
   "description": "Simple CLI written in NodeJS used to encrypt and decrypt seed phrases using hashes and salt",
-  "main": "main.js",
-  "scripts": {
-    "start": "node main.js"
-  },
+  "main": "./src/main.js",
+  "scripts": {},
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Petar-CV/seed-phrase-hasher.git"
@@ -17,6 +16,9 @@
   },
   "homepage": "https://github.com/Petar-CV/seed-phrase-hasher#readme",
   "dependencies": {
-    "inquirer": "^9.1.4"
+    "chalk": "^5.2.0",
+    "chalk-animation": "^2.0.3",
+    "inquirer": "^9.1.4",
+    "nanospinner": "^1.1.0"
   }
 }
