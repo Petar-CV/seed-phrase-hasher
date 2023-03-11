@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Petar-CV/seed-phrase-hasher/issues"
   },
-  "homepage": "https://github.com/Petar-CV/seed-phrase-hasher#readme"
+  "homepage": "https://github.com/Petar-CV/seed-phrase-hasher#readme",
+  "dependencies": {
+    "inquirer": "^9.1.4"
+  }
 }
