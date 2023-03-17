@@ -1,5 +1,5 @@
 import { PromptKeys } from "./prompt-keys.js";
 
 export type PromptAnswer = Object & {
-  [key in PromptKeys]: string;
+  [key in PromptKeys | string]: unknown;
 };
