@@ -95,21 +95,30 @@ export abstract class EncryptUtils {
   }
 
   static encryptSeedPhrase(seedPhrase: string, encryptionKey: string): string {
-    const salt = crypto.randomBytes(16);
-    const derivedKey = crypto.pbkdf2Sync(
-      encryptionKey,
-      salt,
-      100000,
-      32,
-      "sha256"
-    );
-    const iv = crypto.randomBytes(16);
-    const cipher = crypto.createCipheriv("aes-256-cbc", derivedKey, iv);
-    const encrypted = cipher.update(seedPhrase);
-    const finalBuffer = Buffer.concat([encrypted, cipher.final()]);
-    const encryptedSeedPhrase = `${finalBuffer.toString("hex")}.${iv.toString(
-      "hex"
-    )}.${salt.toString("hex")}`;
-    return encryptedSeedPhrase;
+    try {
+      const salt = crypto.randomBytes(16);
+      const derivedKey = crypto.pbkdf2Sync(
+        encryptionKey,
+        salt,
+        100000,
+        32,
+        "sha256"
+      );
+      const iv = crypto.randomBytes(16);
+      const cipher = crypto.createCipheriv("aes-256-cbc", derivedKey, iv);
+      const encrypted = cipher.update(seedPhrase);
+      const finalBuffer = Buffer.concat([encrypted, cipher.final()]);
+      const encryptedSeedPhrase = `${finalBuffer.toString("hex")}.${iv.toString(
+        "hex"
+      )}.${salt.toString("hex")}`;
+      return encryptedSeedPhrase;
+    } catch (error) {
+      console.log(
+        chalk.red(
+          "There was an issue encrypting the value with the given key. Please try again!"
+        )
+      );
+      process.exit(1);
+    }
   }
 }

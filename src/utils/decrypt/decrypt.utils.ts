@@ -67,22 +67,31 @@ export abstract class DecryptUtils {
     encryptedSeedPhrase: string,
     encryptionKey: string
   ): string {
-    const [encrypted, iv, salt] = encryptedSeedPhrase.split(".");
-    const derivedKey = crypto.pbkdf2Sync(
-      encryptionKey,
-      Buffer.from(salt, "hex"),
-      100000,
-      32,
-      "sha256"
-    );
-    const decipher = crypto.createDecipheriv(
-      "aes-256-cbc",
-      derivedKey,
-      Buffer.from(iv, "hex")
-    );
-    const decrypted = decipher.update(Buffer.from(encrypted, "hex"));
-    const finalBuffer = Buffer.concat([decrypted, decipher.final()]);
-    const decryptedSeedPhrase = finalBuffer.toString();
-    return decryptedSeedPhrase;
+    try {
+      const [encrypted, iv, salt] = encryptedSeedPhrase.split(".");
+      const derivedKey = crypto.pbkdf2Sync(
+        encryptionKey,
+        Buffer.from(salt, "hex"),
+        100000,
+        32,
+        "sha256"
+      );
+      const decipher = crypto.createDecipheriv(
+        "aes-256-cbc",
+        derivedKey,
+        Buffer.from(iv, "hex")
+      );
+      const decrypted = decipher.update(Buffer.from(encrypted, "hex"));
+      const finalBuffer = Buffer.concat([decrypted, decipher.final()]);
+      const decryptedSeedPhrase = finalBuffer.toString();
+      return decryptedSeedPhrase;
+    } catch (error) {
+      console.log(
+        chalk.red(
+          "There was an issue decrypting the value with the given key. Please try again!"
+        )
+      );
+      process.exit(1);
+    }
   }
 }
