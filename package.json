@@ -5,6 +5,7 @@
   "main": "./src/main.ts",
   "scripts": {
     "dev": "nodemon ./src/index.ts",
+    "start": "npm run dev",
     "start:prod": "npm run build && node ./dist/index.js",
     "publish:prod": "npm run build && npm publish",
     "build": "tsc",
@@ -15,6 +16,13 @@
     "type": "git",
     "url": "git+https://github.com/Petar-CV/seed-phrase-hasher.git"
   },
+  "keywords": [
+    "nodejs",
+    "cli",
+    "crypto",
+    "inquirerjs",
+    "typescript"
+  ],
   "bin": "./dist/index.js",
   "author": "Petar Cvetko Voćanec",
   "license": "MIT",
